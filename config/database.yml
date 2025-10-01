@@ -30,7 +30,7 @@ production:
     encoding: unicode
     pool: 5
     database: mysite_59i4
-    username: mysite_gqt6_user
+    username: mysite_59i4_user
     password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
     url: <%= ENV['DATABASE_URL'] %>
   cache:
