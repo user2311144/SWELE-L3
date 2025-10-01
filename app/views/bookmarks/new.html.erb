@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>新規ブックマーク登録</h1>
+
+  <% if @bookmark.errors.any? %>
+    <div class="error-messages">
+      <h2 class="error-header">入力内容に不備があります。</h2>
+      <ul>
+        <% @bookmark.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @bookmark, class: "bookmark-form" do |f| %>
+    <div class="form-group">
+      <%= f.label :title, 'タイトル', class: "form-label" %>
+      <%= f.text_field :title, class: "form-input" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :url, 'URL', class: "form-label" %>
+      <%= f.text_field :url, class: "form-input" %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit '登録', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <div class="back-link">
+    <%= link_to '一覧に戻る', bookmarks_path %>
+  </div>
+</div>

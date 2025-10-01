@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ブックマーク一覧</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .bookmark-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bookmark-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bookmark-item:last-child {
+      border-bottom: none;
+    }
+
+    .bookmark-title {
+      font-size: 1.2em;
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    .bookmark-actions a {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+    }
+
+    .add-new {
+      text-align: right;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ブックマーク一覧</h1>
+    <ul class="bookmark-list">
+      <% @bookmarks.each do |book| %>
+        <li class="bookmark-item">
+          <div class="bookmark-details">
+            <a href="<%= book.url %>" class="bookmark-title" target="_blank"><%= book.title %></a>
+          </div>
+          <div class="bookmark-actions">
+            <a href="/bookmarks/<%= book.id %>" class="btn-primary">表示</a>
+            <a href="/bookmarks/<%= book.id %>/edit" class="btn-warning">編集</a>
+            <a href="/bookmarks/<%= book.id %>" data-turbo-method="delete" data-turbo-confirm="本当に削除しますか？" class="btn-danger">削除</a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="add-new">
+      <a href="/bookmarks/new" class="btn-success">新規追加</a>
+    </div>
+  </div>
+
+</body>
+</html>
